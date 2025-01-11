@@ -102,8 +102,14 @@ def extract_calendars(
     gray = cv2.cvtColor(masked_image, cv2.COLOR_BGR2GRAY)
     _, binary = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
     contours, _ = cv2.findContours(binary, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
+    img_height, img_width = img.shape[:2]
+    lower_bound = img_width // 4
+    width_upper_bound = img_width - 10
+    height_upper_bound = img_height - 10
     filtered_contours = find_and_filter_contours(
-        contours=contours, width_range=(1680, 1715), height_range=(1200, 1470)
+        contours=contours,
+        width_range=(lower_bound, width_upper_bound),
+        height_range=(lower_bound, height_upper_bound),
     )
 
     calendars = []
