@@ -157,9 +157,12 @@ def main() -> None:
 
         for cell in sorted(filtered_cells, key=lambda c: c.datestamp):
             actual_date = cell.datestamp + timedelta(days=1) if cell.is_offset else cell.datestamp
-            location_data[actual_date.isoformat()] = (
+            location_data[actual_date] = (
                 "recycling" if cell.is_recycling else "glass" if cell.is_glass else ""
             )
+
+        location_data = dict(sorted(location_data.items())[-30:])
+        location_data = {k.isoformat(): v for k, v in location_data.items()}
 
         output_file = Path(f"output/{location}.json")
         output_file.parent.mkdir(parents=True, exist_ok=True)
