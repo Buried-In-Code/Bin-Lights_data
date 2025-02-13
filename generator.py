@@ -162,7 +162,7 @@ def main() -> None:
             )
 
         location_data = dict(sorted(location_data.items())[-30:])
-        location_data = {k.isoformat(): v for k, v in location_data.items()}
+        location_data = {k.isoformat(): ["rubbish", v] for k, v in location_data.items()}
 
         output_file = Path(f"output/{location}.json")
         output_file.parent.mkdir(parents=True, exist_ok=True)
