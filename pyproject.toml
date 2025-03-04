@@ -5,12 +5,12 @@ dev = [
 
 [project]
 dependencies = [
-  "numpy >= 2.2.2",
+  "numpy >= 2.2.3",
   "opencv-python >= 4.11.0.86",
   "pytesseract >= 0.3.13"
 ]
-description = "Add your description here"
-name = "bindata"
+description = "Json data of Bin rotations extracted from an Image."
+name = "Bin-Lights"
 readme = "README.md"
 requires-python = ">= 3.13"
 version = "0.1.0"
