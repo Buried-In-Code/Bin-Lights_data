@@ -5,14 +5,15 @@ __pypackages__/
 .ruff_cache/
 .venv/
 build/
+covers/
 dist/
 logs/
 
 # =====Files=====
 *.iml
 *.log
+*.txt
+.coverage
 .envrc
 .pdm-python
 .python-version
-pdm.lock
-uv.lock

@@ -1,15 +1,18 @@
 [dependency-groups]
 dev = [
-  "pre-commit >= 4.1.0"
+  "pre-commit >= 4.2.0"
 ]
 
 [project]
 dependencies = [
-  "numpy >= 2.2.3",
+  "numpy >= 2.2.4",
   "opencv-python >= 4.11.0.86",
-  "pytesseract >= 0.3.13"
+  "pymupdf >= 1.25.5",
+  "pytesseract >= 0.3.13",
+  "rich >= 14.0.0",
+  "tessdata-eng >= 1.0.0",
 ]
-description = "Json data of Bin rotations extracted from an Image."
+description = "Json data of Bin rotations extracted from an Image/Pdf."
 name = "Bin-Lights"
 readme = "README.md"
 requires-python = ">= 3.13"
