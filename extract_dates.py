@@ -9,9 +9,6 @@ import cv2
 import numpy as np
 import pymupdf
 import tessdata
-from PIL import Image, ImageDraw
-import pytesseract
-from pytesseract import Output
 
 
 @dataclass
@@ -57,32 +54,24 @@ def analyze_square(square: np.ndarray) -> str:
     target_colors = [tuple(color[::-1]) for color in list(COLOURS.values())] + [(0, 0, 0)]
     return max(target_colors, key=lambda c: color_counts.get(c, 0))
 
-def find_and_highlight_number(image: np.ndarray, number: str, square_size: int = 5):
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    boxes = pytesseract.image_to_boxes(image)
-    for box in boxes.splitlines():
-        b = box.split()
-        target_char = b[0]
-        if target_char == number:
-            x, y, w, h = int(b[1]), int(b[2]), int(b[3]), int(b[4])
-            return np.array([x, y, w, h])
-    return None
 
 def process_calendar_squares(img: np.ndarray, year: int, month: int) -> set[Cell]:
+    img = crop_calendar(img=img)
     height, width, _ = img.shape
     square_size = width // 7
     start_day, days_in_month = calendar.monthrange(year, month)
     colours_map = {tuple(v[::-1]): k for k, v in COLOURS.items()}
 
     cell_map = {}
-    from rich import print
+    from rich import print  # noqa: A004
+
     for day in range(1, days_in_month + 1):
         cell_idx = start_day + day - 1
         row, col = divmod(cell_idx, 7)
-        
+
         x, y = col * square_size, row * square_size + 35
         square = img[y : y + square_size, x : x + square_size]
-        
+
         predominant_colour = colours_map.get(analyze_square(square=square))
         print(f"{year:04}-{month:02}-{day:02}: {predominant_colour}")
         cell_map[(row, col)] = Cell(datestamp=date(year, month, day), colour=predominant_colour)
@@ -96,6 +85,40 @@ def process_calendar_squares(img: np.ndarray, year: int, month: int) -> set[Cell
     return set(cell_map.values())
 
 
+def find_and_filter_contours(
+    contours: list[np.ndarray], width_range: tuple[int, int], height_range: tuple[int, int]
+) -> list[np.ndarray]:
+    return [
+        c
+        for c in contours
+        if width_range[0] <= cv2.boundingRect(c)[2] <= width_range[1]
+        and height_range[0] <= cv2.boundingRect(c)[3] <= height_range[1]
+    ]
+
+
+def remove_colours(img: np.ndarray, colours_to_mask: list[tuple[int, int, int]]) -> np.ndarray:
+    masked_image = img.copy()
+    for colour in colours_to_mask:
+        lower = np.array([max(c - 10, 0) for c in colour], dtype="uint8")
+        upper = np.array([min(c + 10, 255) for c in colour], dtype="uint8")
+        mask = cv2.inRange(masked_image, lower, upper)
+        masked_image[mask > 0] = [255, 255, 255]
+    return masked_image
+
+
+def crop_calendar(img: np.ndarray) -> np.ndarray:
+    bgr_colours_to_remove = [colour[::-1] for colour in list(COLOURS.values())]
+    masked_image = remove_colours(img=img, colours_to_mask=bgr_colours_to_remove)
+    gray = cv2.cvtColor(masked_image, cv2.COLOR_BGR2GRAY)
+    _, binary = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
+    contours, _ = cv2.findContours(binary, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
+    filtered_contour = find_and_filter_contours(
+        contours=contours, width_range=(1680, 1715), height_range=(1200, 1470)
+    )[0]
+    x, y, w, h = cv2.boundingRect(filtered_contour)
+    return img[y : y + h, x : x + w]
+
+
 def parse_month(text: str) -> datetime | None:
     try:
         return datetime.strptime(text.strip(), "%B%Y")  # noqa: DTZ007
@@ -104,7 +127,10 @@ def parse_month(text: str) -> datetime | None:
 
 
 def adjust_mappings(
-    mapped: list[dict[str, float | int]], edges: tuple[int, int], rows: int = ROWS, columns: int = COLUMNS
+    mapped: list[dict[str, float | int]],
+    edges: tuple[int, int],
+    rows: int = ROWS,
+    columns: int = COLUMNS,
 ) -> list[dict[str, int]]:
     output = []
     for row in range(rows):
@@ -113,8 +139,8 @@ def adjust_mappings(
             block = mapped[idx]
 
             x0, y0 = block["x0"], block["y0"]
-            x1 = mapped[idx + 1]["x0"] - 50 if col < columns - 1 else edges[1]
-            y1 = mapped[idx + COLUMNS]["y0"] - 50 if row < rows - 1 else edges[0]
+            x1 = mapped[idx + 1]["x0"] - 20 if col < columns - 1 else edges[1]
+            y1 = mapped[idx + COLUMNS]["y0"] - 20 if row < rows - 1 else edges[0]
 
             output.append(
                 {
@@ -129,7 +155,7 @@ def adjust_mappings(
     return output
 
 
-def extract_png_calendars_new(file: Path) -> list[Calendar]:
+def extract_png_calendars(file: Path) -> list[Calendar]:
     page = pymupdf.open(file)[0]
     pix_bytes = page.get_pixmap().tobytes("png")
     img = cv2.imdecode(np.frombuffer(pix_bytes, np.uint8), cv2.IMREAD_COLOR)
@@ -169,7 +195,7 @@ def extract_pdf_calendars(file: Path) -> list[Calendar]:
     pix_bytes = page.get_pixmap().tobytes("png")
     img = cv2.imdecode(np.frombuffer(pix_bytes, np.uint8), cv2.IMREAD_COLOR)
     text_page = page.get_textpage_ocr(tessdata=tessdata.data_path())
-    
+
     mapped = [
         {
             "x0": block[0] - 5,
@@ -202,7 +228,7 @@ def main() -> None:
     for png_file in Path("sources").glob("*.png"):
         all_cells.update(
             cell
-            for cal in extract_png_calendars_new(file=png_file)
+            for cal in extract_png_calendars(file=png_file)
             for cell in process_calendar_squares(
                 img=cal.calendar_image, year=cal.year, month=cal.month
             )
