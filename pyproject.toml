@@ -2,6 +2,12 @@
 dev = [
   "pre-commit >= 4.5.0"
 ]
+tests = [
+  "pytest >= 9.0.0",
+  "pytest-cov >= 7.0.0",
+  "tox >= 4.32.0",
+  "tox-uv >= 1.29.0"
+]
 
 [project]
 dependencies = [
@@ -59,6 +65,7 @@ split-on-trailing-comma = false
 classmethod-decorators = ["classmethod"]
 
 [tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
