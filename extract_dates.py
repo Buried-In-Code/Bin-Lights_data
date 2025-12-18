@@ -303,7 +303,8 @@ def main() -> None:
         output_file = Path(f"output/{location}.json")
         output_file.parent.mkdir(parents=True, exist_ok=True)
         with output_file.open("w") as stream:
-            json.dump(location_data, stream, indent=4)
+            json.dump(location_data, stream, indent=2)
+            stream.write("\n")
 
 
 if __name__ == "__main__":

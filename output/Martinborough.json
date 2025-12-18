@@ -1,262 +1,262 @@
 {
-    "2025-01-02": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-01-08": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-01-15": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-01-23": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-01-29": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-02-05": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-02-12": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-02-19": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-02-26": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-03-05": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-03-12": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-03-19": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-03-26": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-04-02": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-04-09": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-04-16": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-04-24": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-04-30": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-05-07": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-05-14": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-05-21": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-05-28": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-06-05": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-06-11": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-06-18": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-06-25": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-07-02": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-07-09": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-07-16": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-07-23": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-07-30": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-08-06": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-08-13": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-08-20": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-08-27": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-09-03": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-09-10": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-09-17": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-09-24": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-10-01": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-10-08": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-10-15": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-10-22": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-10-30": [
-        "rubbish",
-        ""
-    ],
-    "2025-11-05": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-11-12": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-11-19": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-11-26": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-12-03": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-12-10": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-12-17": [
-        "rubbish",
-        "recycling"
-    ],
-    "2025-12-24": [
-        "rubbish",
-        "glass"
-    ],
-    "2025-12-31": [
-        "rubbish",
-        "recycling"
-    ],
-    "2026-01-07": [
-        "rubbish",
-        "glass"
-    ],
-    "2026-01-14": [
-        "rubbish",
-        "recycling"
-    ],
-    "2026-01-22": [
-        "rubbish",
-        "glass"
-    ],
-    "2026-01-28": [
-        "rubbish",
-        "recycling"
-    ],
-    "2026-02-04": [
-        "rubbish",
-        "glass"
-    ],
-    "2026-02-11": [
-        "rubbish",
-        "recycling"
-    ],
-    "2026-02-18": [
-        "rubbish",
-        "glass"
-    ],
-    "2026-02-25": [
-        "rubbish",
-        "recycling"
-    ],
-    "2026-03-04": [
-        "rubbish",
-        "glass"
-    ],
-    "2026-03-11": [
-        "rubbish",
-        "recycling"
-    ],
-    "2026-03-18": [
-        "rubbish",
-        "glass"
-    ],
-    "2026-03-25": [
-        "rubbish",
-        "recycling"
-    ]
+  "2025-01-02": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-01-08": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-01-15": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-01-23": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-01-29": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-02-05": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-02-12": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-02-19": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-02-26": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-03-05": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-03-12": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-03-19": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-03-26": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-04-02": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-04-09": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-04-16": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-04-24": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-04-30": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-05-07": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-05-14": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-05-21": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-05-28": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-06-05": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-06-11": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-06-18": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-06-25": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-07-02": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-07-09": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-07-16": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-07-23": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-07-30": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-08-06": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-08-13": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-08-20": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-08-27": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-09-03": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-09-10": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-09-17": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-09-24": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-10-01": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-10-08": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-10-15": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-10-22": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-10-30": [
+    "rubbish",
+    ""
+  ],
+  "2025-11-05": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-11-12": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-11-19": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-11-26": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-12-03": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-12-10": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-12-17": [
+    "rubbish",
+    "recycling"
+  ],
+  "2025-12-24": [
+    "rubbish",
+    "glass"
+  ],
+  "2025-12-31": [
+    "rubbish",
+    "recycling"
+  ],
+  "2026-01-07": [
+    "rubbish",
+    "glass"
+  ],
+  "2026-01-14": [
+    "rubbish",
+    "recycling"
+  ],
+  "2026-01-22": [
+    "rubbish",
+    "glass"
+  ],
+  "2026-01-28": [
+    "rubbish",
+    "recycling"
+  ],
+  "2026-02-04": [
+    "rubbish",
+    "glass"
+  ],
+  "2026-02-11": [
+    "rubbish",
+    "recycling"
+  ],
+  "2026-02-18": [
+    "rubbish",
+    "glass"
+  ],
+  "2026-02-25": [
+    "rubbish",
+    "recycling"
+  ],
+  "2026-03-04": [
+    "rubbish",
+    "glass"
+  ],
+  "2026-03-11": [
+    "rubbish",
+    "recycling"
+  ],
+  "2026-03-18": [
+    "rubbish",
+    "glass"
+  ],
+  "2026-03-25": [
+    "rubbish",
+    "recycling"
+  ]
 }

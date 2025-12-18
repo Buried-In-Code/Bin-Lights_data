@@ -3,31 +3,39 @@ repos:
     rev: v0.14.9
     hooks:
       - id: ruff-format
-      - id: ruff
-  - repo: https://github.com/executablebooks/mdformat
+      - id: ruff-check
+  - repo: https://github.com/hukkin/mdformat
     rev: 1.0.0
     hooks:
       - id: mdformat
         additional_dependencies:
           - mdformat-gfm
-          - mdformat-tables
+          - mdformat-ruff
         args:
           - --number
           - --wrap=keep
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
+      - id: check-added-large-files
       - id: check-ast
       - id: check-builtin-literals
       - id: check-case-conflict
       - id: check-docstring-first
+#      - id: check-executables-have-shebangs
+      - id: check-illegal-windows-names
+      - id: check-json
       - id: check-merge-conflict
         args:
           - --assume-in-merge
+      - id: check-shebang-scripts-are-executable
       - id: check-toml
+      - id: check-vcs-permalinks
+#      - id: check-xml
       - id: check-yaml
         args:
           - --allow-multiple-documents
+      - id: debug-statements
       - id: end-of-file-fixer
         exclude_types:
           - json
@@ -38,6 +46,10 @@ repos:
         args:
           - --fix=auto
 #      - id: name-tests-test
+      - id: pretty-format-json
+        args:
+          - --autofix
+          - --indent=2
       - id: trailing-whitespace
         args:
           - --markdown-linebreak-ext=md
