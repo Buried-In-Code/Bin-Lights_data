@@ -1,7 +1,8 @@
 from datetime import date
 
 import numpy as np
-from calendar_extract import Calendar, Cell
+
+from extract_dates import Calendar, Cell
 
 
 def test_calendar_equality_and_hash() -> None:

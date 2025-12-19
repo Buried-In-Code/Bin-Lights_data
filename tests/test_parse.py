@@ -1,4 +1,4 @@
-from calendar_extract import parse_month
+from extract_dates import parse_month
 
 
 def test_parse_month_valid() -> None:

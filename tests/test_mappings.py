@@ -1,4 +1,4 @@
-from calendar_extract import adjust_mappings
+from extract_dates import adjust_mappings
 
 
 def test_adjust_mappings_single_row() -> None:
