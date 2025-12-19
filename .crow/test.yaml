@@ -1,0 +1,16 @@
+when:
+  - event: push
+    branch: main
+  - event: pull_request
+    branch: main
+
+matrix:
+  include:
+    - python: 3.13
+
+steps:
+  pytest:
+    image: "ghcr.io/astral-sh/uv:python${python}-trixie-slim"
+    commands:
+      - uv sync --group tests --locked
+      - uv run pytest
