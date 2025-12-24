@@ -1,8 +1,10 @@
 from pathlib import Path
 
+import cv2
 import numpy as np
+import pymupdf
 
-import extract_dates as mod
+from bin_lights.png_extract import extract_calendars
 
 
 class FakeTextPage:
@@ -35,10 +37,10 @@ class FakeDoc:
 
 
 def test_extract_png_calendars(monkeypatch) -> None:  # noqa: ANN001
-    monkeypatch.setattr(mod.pymupdf, "open", lambda _: FakeDoc())
-    monkeypatch.setattr(mod.cv2, "imdecode", lambda *_: np.zeros((200, 300, 3)))
+    monkeypatch.setattr(pymupdf, "open", lambda _: FakeDoc())
+    monkeypatch.setattr(cv2, "imdecode", lambda *_: np.zeros((200, 300, 3)))
 
-    calendars = mod.extract_png_calendars(Path("fake.png"))
+    calendars = extract_calendars(Path("fake.png"))
 
     assert len(calendars) == 3
     assert [(c.month, c.year) for c in calendars] == [(1, 2024), (2, 2024), (3, 2024)]

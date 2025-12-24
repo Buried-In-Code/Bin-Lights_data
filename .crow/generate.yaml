@@ -8,7 +8,7 @@ steps:
       - apt-get update
       - apt-get install -y tesseract-ocr
       - uv sync --locked
-      - uv run extract_dates.py
+      - uv run -m bin_lights
 
   push-changes:
     image: "appleboy/drone-git-push:1.2"

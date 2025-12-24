@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-from extract_dates import keep_only_colours, remove_colours
+from bin_lights.image_ops import keep_only_colours, remove_colours
 
 
 def test_remove_colours_masks_pixels(monkeypatch) -> None:  # noqa: ANN001

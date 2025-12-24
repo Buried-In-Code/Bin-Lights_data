@@ -1,4 +1,4 @@
-from extract_dates import parse_month
+from bin_lights.image_ops import parse_month
 
 
 def test_parse_month_valid() -> None:
