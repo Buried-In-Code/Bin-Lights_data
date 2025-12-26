@@ -1,3 +1,7 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
 [dependency-groups]
 dev = [
   "pre-commit >= 4.5.0"
@@ -10,6 +14,20 @@ tests = [
 ]
 
 [project]
+authors = [
+  {email = "BuriedInCode@tuta.io", name = "BuriedInCode"}
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python",
+  "Topic :: Internet",
+  "Typing :: Typed"
+]
 dependencies = [
   "numpy >= 2.2.0",
   "opencv-python-headless >= 4.12.0.0",
@@ -19,10 +37,30 @@ dependencies = [
   "tessdata-eng >= 1.0.0"
 ]
 description = "Json data of Bin rotations extracted from an Image/Pdf."
+dynamic = ["version"]
+license = "MIT"
+license-files = ["LICENSE"]
+maintainers = [
+  {email = "BuriedInCode@tuta.io", name = "BuriedInCode"}
+]
 name = "Bin-Lights"
 readme = "README.md"
 requires-python = ">= 3.13"
-version = "0.1.0"
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.coverage.run]
+source = ["bin_lights"]
+
+[tool.hatch.build.targets.sdist]
+exclude = [".crow/"]
+
+[tool.hatch.version]
+path = "bin_lights/__init__.py"
+
+[tool.pytest.ini_options]
+addopts = ["--cov"]
 
 [tool.ruff]
 fix = true
@@ -43,7 +81,8 @@ ignore = [
   "EM",
   "FBT",
   "PLR0913",
-  "T201"
+  "T201",
+  "TRY003"
 ]
 select = ["ALL"]
 
@@ -75,3 +114,14 @@ keep-runtime-typing = true
 
 [tool.tomlsort]
 all = true
+overrides."tool.tox.env_list".inline_arrays = false
+overrides."tool.tox.env_run_base.commands".inline_arrays = false
+
+[tool.tox]
+env_list = ["3.13"]
+min_version = "4.22"
+
+[tool.tox.env_run_base]
+commands = [["pytest"]]
+dependency_groups = ["tests"]
+passenv = []

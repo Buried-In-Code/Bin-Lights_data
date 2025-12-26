@@ -1,50 +1,98 @@
-__all__ = ["analyze_square", "process_calendar_squares"]
+__all__ = ["process_calendar_squares", "resolve_weekly_colours"]
 
 import calendar
 from collections import Counter
-from datetime import date
+from datetime import date, timedelta
 
 import numpy as np
 
-from bin_lights.models import Cell
+from bin_lights.models import Cell, Colour
 
 
-def analyze_square(square: np.ndarray, colours: dict[str, tuple[int, int, int]]) -> str:
+def dominant_square_colour(
+    square: np.ndarray, palette: dict[Colour, tuple[int, int, int]]
+) -> tuple[int, int, int]:
     pixels = square.reshape(-1, 3)
-    color_counts = Counter(map(tuple, pixels))
-    target_colors = [tuple(color[::-1]) for color in list(colours.values())] + [(0, 0, 0)]
-    return max(target_colors, key=lambda c: color_counts.get(c, 0))
+    pixel_counts = Counter(map(tuple, pixels))
+
+    candidate_colours = {tuple(rgb[::-1]) for rgb in palette.values()} | {(0, 0, 0)}
+
+    return max(candidate_colours, key=lambda colour: pixel_counts.get(colour, 0))
 
 
 def process_calendar_squares(
-    img: np.ndarray, year: int, month: int, colours: dict[str, tuple[int, int, int]]
+    img: np.ndarray,
+    year: int,
+    month: int,
+    colours: dict[Colour, tuple[int, int, int]],
+    offset_colours: set[Colour] | None = None,
 ) -> set[Cell]:
-    start_day, days_in_month = calendar.monthrange(year, month)
-    last_cell_idx = start_day + days_in_month - 1
-    last_row, _ = divmod(last_cell_idx, 7)
-    row_count = last_row + 1
+    offset_colours = offset_colours or set()
 
-    height, width, _ = img.shape
-    square_width = width // 7
-    square_height = height // row_count
+    _, days_in_month = calendar.monthrange(year, month)
 
-    colours_map = {tuple(v[::-1]): k for k, v in colours.items()}
+    first_of_month = date(year, month, 1)
+    last_of_month = date(year, month, days_in_month)
 
-    cell_map = {}
-    for day in range(1, days_in_month + 1):
-        cell_idx = start_day + day - 1
-        row, col = divmod(cell_idx, 7)
+    grid_start = first_of_month - timedelta(days=first_of_month.weekday())
+    total_days = (last_of_month - grid_start).days + 1
+    total_rows = (total_days + 6) // 7
 
-        x, y = col * square_width, row * square_height
-        square = img[y : y + square_height, x : x + square_width]
+    image_height, image_width, _ = img.shape
+    cell_width = image_width // 7
+    cell_height = image_height // total_rows
 
-        predominant_colour = colours_map.get(analyze_square(square=square, colours=colours))
-        cell_map[(row, col)] = Cell(datestamp=date(year, month, day), colour=predominant_colour)
+    rgb_to_colour = {tuple(rgb[::-1]): colour for colour, rgb in colours.items()}
 
-    for (row, _col), cell in cell_map.items():
-        row_colours = {cell_map[(r, c)].colour for (r, c) in cell_map if r == row}
-        cell.is_recycling = "red" in row_colours
-        cell.is_glass = "blue" in row_colours
-        cell.is_offset = cell.colour in {"yellow", "black"}
+    cells: set[Cell] = set()
 
-    return set(cell_map.values())
+    for row in range(total_rows):
+        for col in range(7):
+            cell_date = grid_start + timedelta(days=row * 7 + col)
+            if cell_date.month != month:
+                continue
+
+            x = col * cell_width
+            y = row * cell_height
+            square = img[y : y + cell_height, x : x + cell_width]
+
+            rgb = dominant_square_colour(square=square, palette=colours)
+            colour = rgb_to_colour.get(rgb)
+
+            cells.add(Cell(datestamp=cell_date, colour=colour, is_offset=colour in offset_colours))
+
+    return cells
+
+
+def resolve_weekly_colours(cells: set[Cell], action_colours: set[Colour]) -> None:
+    cells_by_date = {cell.datestamp: cell for cell in cells}
+    all_dates = sorted(cells_by_date)
+
+    if not all_dates:
+        return
+
+    week_start = all_dates[0] - timedelta(days=all_dates[0].weekday())
+    week_end = all_dates[-1]
+
+    current_week = week_start
+    while current_week <= week_end:
+        week_dates = {current_week + timedelta(days=i) for i in range(7)}
+        week_cells = [cells_by_date[d] for d in week_dates if d in cells_by_date]
+
+        if not week_cells:
+            current_week += timedelta(days=7)
+            continue
+
+        action_candidates = {cell.colour for cell in week_cells if cell.colour in action_colours}
+
+        if len(action_candidates) > 1:
+            raise ValueError(
+                f"Week starting {current_week} has ambiguous action colours: {action_candidates}"
+            )
+
+        if action_candidates:
+            resolved_colour = next(iter(action_candidates))
+            for cell in week_cells:
+                cell.colour = resolved_colour
+
+        current_week += timedelta(days=7)
