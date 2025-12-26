@@ -6,8 +6,9 @@ from typing import Final
 
 from rich import print  # noqa: A004
 
+from bin_lights import get_project_root
 from bin_lights.calendar_grid import process_calendar_squares, resolve_weekly_colours
-from bin_lights.models import Cell, Colour, Context
+from bin_lights.models import Cell, Context
 from bin_lights.pdf_extract import (
     crop_calendar as crop_pdf_calendar,
     extract_calendars as extract_pdf_calendars,
@@ -16,13 +17,9 @@ from bin_lights.png_extract import (
     crop_calendar as crop_png_calendar,
     extract_calendars as extract_png_calendars,
 )
+from bin_lights.utils import Colour
 
-PROJECT_ROOT: Final[Path] = Path(__file__).parent.parent
 DAY_NAME_TO_INDEX: Final[dict[str, int]] = {name: idx for idx, name in enumerate(calendar.day_name)}
-
-
-def get_project_root() -> Path:
-    return PROJECT_ROOT
 
 
 def write_location_json_outputs(

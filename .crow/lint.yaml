@@ -6,7 +6,7 @@ when:
 
 steps:
   pre-commit:
-    image: "python:3.14"
+    image: "ghcr.io/astral-sh/uv:python3.14-trixie"
     commands:
-      - pip install --no-cache-dir "pre-commit==4.3.0"
-      - pre-commit run -a
+      - uv sync --locked --group dev
+      - uv run pre-commit run -a

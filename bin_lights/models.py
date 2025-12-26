@@ -1,31 +1,12 @@
-__all__ = ["Calendar", "Cell", "Colour", "Context"]
+__all__ = ["Calendar", "Cell", "Context"]
 
 from dataclasses import dataclass, field
 from datetime import date
-from enum import Enum, auto
 from pathlib import Path
 
 import numpy as np
 
-
-class Colour(Enum):
-    RED = auto()
-    YELLOW = auto()
-    GREEN = auto()
-    CYAN = auto()
-    BLUE = auto()
-    MAGENTA = auto()
-    BLACK = auto()
-    WHITE = auto()
-
-    @property
-    def display(self) -> str:
-        return self.name.lower()
-
-    def __lt__(self, other: object) -> bool:
-        if not isinstance(other, Colour):
-            return NotImplemented
-        return self.value < other.value
+from bin_lights.utils import Colour
 
 
 @dataclass(frozen=True)

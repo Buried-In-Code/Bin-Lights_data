@@ -24,17 +24,13 @@ classifiers = [
   "Natural Language :: English",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Programming Language :: Python",
   "Topic :: Internet",
   "Typing :: Typed"
 ]
 dependencies = [
-  "numpy >= 2.2.0",
-  "opencv-python-headless >= 4.12.0.0",
-  "pymupdf >= 1.26.0",
-  "pytesseract >= 0.3.13",
-  "rich >= 14.2.0",
-  "tessdata-eng >= 1.0.0"
+  "rich >= 14.2.0"
 ]
 description = "Json data of Bin rotations extracted from an Image/Pdf."
 dynamic = ["version"]
@@ -47,6 +43,22 @@ name = "Bin-Lights"
 readme = "README.md"
 requires-python = ">= 3.13"
 
+[project.optional-dependencies]
+api-extract = [
+  "httpx >= 0.28.0"
+]
+image-extract = [
+  "numpy >= 2.2.0",
+  "opencv-python-headless >= 4.12.0.0",
+  "pymupdf >= 1.26.0",
+  "pytesseract >= 0.3.13",
+  "tessdata-eng >= 1.0.0"
+]
+
+[project.scripts]
+bin-api-extract = "bin_lights.api_extract:main"
+bin-image-extract = "bin_lights.image_extract:main"
+
 [tool.coverage.report]
 show_missing = true
 
@@ -54,7 +66,7 @@ show_missing = true
 source = ["bin_lights"]
 
 [tool.hatch.build.targets.sdist]
-exclude = [".crow/"]
+exclude = [".crow/", "output/", "sources/"]
 
 [tool.hatch.version]
 path = "bin_lights/__init__.py"
@@ -118,10 +130,11 @@ overrides."tool.tox.env_list".inline_arrays = false
 overrides."tool.tox.env_run_base.commands".inline_arrays = false
 
 [tool.tox]
-env_list = ["3.13"]
+env_list = ["3.13", "3.14"]
 min_version = "4.22"
 
 [tool.tox.env_run_base]
 commands = [["pytest"]]
 dependency_groups = ["tests"]
+extras = ["api-extract", "image-extract"]
 passenv = []

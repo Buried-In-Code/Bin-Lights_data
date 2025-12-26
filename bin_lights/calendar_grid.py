@@ -6,7 +6,8 @@ from datetime import date, timedelta
 
 import numpy as np
 
-from bin_lights.models import Cell, Colour
+from bin_lights.models import Cell
+from bin_lights.utils import Colour
 
 
 def dominant_square_colour(

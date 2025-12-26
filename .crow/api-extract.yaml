@@ -1,17 +1,17 @@
 when:
+  - event: cron
+    cron: bin-lights_api-extract
   - event: manual
 
 steps:
   generate:
-    image: "ghcr.io/astral-sh/uv:python3.13-trixie"
+    image: "ghcr.io/astral-sh/uv:python3.14-trixie-slim"
     commands:
-      - apt-get update
-      - apt-get install -y tesseract-ocr
-      - uv sync --locked
-      - uv run -m bin_lights
+      - uv sync --locked --extra api-extract
+      - uv run bin-api-extract
 
   push-changes:
-    image: "appleboy/drone-git-push:1.2"
+    image: "appleboy/drone-git-push:1.1"
     pull: true
     settings:
       ssh_key:
@@ -20,6 +20,6 @@ steps:
       branch: main
       force: true
       commit: true
-      commit_message: "Generate output"
+      commit_message: "Generate api extract output"
       author_name: BuriedInCode
       author_email: "buriedincode@noreply.codefloe.com"

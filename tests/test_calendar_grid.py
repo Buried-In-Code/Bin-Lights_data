@@ -8,7 +8,8 @@ from bin_lights.calendar_grid import (
     process_calendar_squares,
     resolve_weekly_colours,
 )
-from bin_lights.models import Cell, Colour
+from bin_lights.models import Cell
+from bin_lights.utils import Colour
 
 
 def test_dominant_square_colour_picks_most_frequent_palette_colour() -> None:

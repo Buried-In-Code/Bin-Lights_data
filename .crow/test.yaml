@@ -12,5 +12,5 @@ steps:
   pytest:
     image: "ghcr.io/astral-sh/uv:python${python}-trixie-slim"
     commands:
-      - uv sync --group tests --locked
+      - uv sync --locked --group tests --all-extras
       - uv run pytest
