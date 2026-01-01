@@ -11,7 +11,7 @@ steps:
       - uv run bin-api-extract
 
   push-changes:
-    image: "appleboy/drone-git-push:1.1"
+    image: "appleboy/drone-git-push:1.2"
     pull: true
     settings:
       ssh_key:
