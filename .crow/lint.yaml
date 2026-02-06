@@ -6,7 +6,7 @@ when:
 
 steps:
   pre-commit:
-    image: "ghcr.io/astral-sh/uv:python3.14-trixie"
+    image: "cr.codefloe.com/ghcr.io/astral-sh/uv:python3.14-trixie"
     commands:
       - uv sync --locked --group dev
       - uv run pre-commit run -a

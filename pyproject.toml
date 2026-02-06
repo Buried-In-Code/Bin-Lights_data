@@ -9,7 +9,7 @@ dev = [
 tests = [
   "pytest >= 9.0.0",
   "pytest-cov >= 7.0.0",
-  "tox >= 4.32.0",
+  "tox >= 4.34.0",
   "tox-uv >= 1.29.0"
 ]
 
@@ -30,7 +30,7 @@ classifiers = [
   "Typing :: Typed"
 ]
 dependencies = [
-  "rich >= 14.2.0"
+  "rich >= 14.3.0"
 ]
 description = "Json data of Bin rotations extracted from an Image/Pdf."
 dynamic = ["version"]
@@ -48,8 +48,8 @@ api-extract = [
   "httpx >= 0.28.0"
 ]
 image-extract = [
-  "numpy >= 2.2.0",
-  "opencv-python-headless >= 4.12.0.0",
+  "numpy >= 2.4.0",
+  "opencv-python-headless >= 4.13.0.0",
   "pymupdf >= 1.26.0",
   "pytesseract >= 0.3.13",
   "tessdata-eng >= 1.0.0"

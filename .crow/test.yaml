@@ -7,10 +7,11 @@ when:
 matrix:
   include:
     - python: 3.13
+    - python: 3.14
 
 steps:
   pytest:
-    image: "ghcr.io/astral-sh/uv:python${python}-trixie-slim"
+    image: "cr.codefloe.com/ghcr.io/astral-sh/uv:python${python}-trixie-slim"
     commands:
       - uv sync --locked --group tests --all-extras
       - uv run pytest

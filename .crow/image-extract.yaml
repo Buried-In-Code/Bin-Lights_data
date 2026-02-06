@@ -3,7 +3,7 @@ when:
 
 steps:
   generate:
-    image: "ghcr.io/astral-sh/uv:python3.13-trixie"
+    image: "cr.codefloe.com/ghcr.io/astral-sh/uv:python3.14-trixie-slim"
     commands:
       - apt-get update
       - apt-get install -y tesseract-ocr
@@ -11,7 +11,7 @@ steps:
       - uv run bin-image-extract
 
   push-changes:
-    image: "appleboy/drone-git-push:1.2"
+    image: "cr.codefloe.com/docker.io/appleboy/drone-git-push:1.2"
     pull: true
     settings:
       ssh_key:

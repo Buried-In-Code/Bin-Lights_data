@@ -5,13 +5,13 @@ when:
 
 steps:
   generate:
-    image: "ghcr.io/astral-sh/uv:python3.14-trixie-slim"
+    image: "cr.codefloe.com/ghcr.io/astral-sh/uv:python3.14-trixie-slim"
     commands:
       - uv sync --locked --extra api-extract
       - uv run bin-api-extract
 
   push-changes:
-    image: "appleboy/drone-git-push:1.2"
+    image: "cr.codefloe.com/docker.io/appleboy/drone-git-push:1.2"
     pull: true
     settings:
       ssh_key:
