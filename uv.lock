@@ -47,11 +47,11 @@ tests = [
 [package.metadata]
 requires-dist = [
     { name = "httpx", marker = "extra == 'api-extract'", specifier = ">=0.28.0" },
-    { name = "numpy", marker = "extra == 'image-extract'", specifier = ">=2.2.0" },
-    { name = "opencv-python-headless", marker = "extra == 'image-extract'", specifier = ">=4.12.0.0" },
+    { name = "numpy", marker = "extra == 'image-extract'", specifier = ">=2.4.0" },
+    { name = "opencv-python-headless", marker = "extra == 'image-extract'", specifier = ">=4.13.0.0" },
     { name = "pymupdf", marker = "extra == 'image-extract'", specifier = ">=1.26.0" },
     { name = "pytesseract", marker = "extra == 'image-extract'", specifier = ">=0.3.13" },
-    { name = "rich", specifier = ">=14.2.0" },
+    { name = "rich", specifier = ">=14.3.0" },
     { name = "tessdata-eng", marker = "extra == 'image-extract'", specifier = ">=1.0.0" },
 ]
 provides-extras = ["api-extract", "image-extract"]
@@ -61,7 +61,7 @@ dev = [{ name = "pre-commit", specifier = ">=4.5.0" }]
 tests = [
     { name = "pytest", specifier = ">=9.0.0" },
     { name = "pytest-cov", specifier = ">=7.0.0" },
-    { name = "tox", specifier = ">=4.32.0" },
+    { name = "tox", specifier = ">=4.34.0" },
     { name = "tox-uv", specifier = ">=1.29.0" },
 ]
 
