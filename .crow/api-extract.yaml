@@ -11,7 +11,7 @@ steps:
       - uv run bin-api-extract
 
   push-changes:
-    image: "cr.codefloe.com/docker.io/appleboy/drone-git-push:1.2"
+    image: "docker.io/appleboy/drone-git-push:1.2"
     pull: true
     settings:
       ssh_key:

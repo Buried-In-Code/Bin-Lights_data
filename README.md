@@ -6,8 +6,8 @@ A repo to parse and generate json files, to be used in Bin Lights implementation
 
 ## Implementations
 
-- [Pico Project](https://codeberg.org/BuriedInCode/Bin-Lights_pico)
-- [Flutter App](https://codeberg.org/BuriedInCode/Bin-Lights_flutter)
+- [Pico Project](https://codefloe.com/BuriedInCode/Bin-Lights)
+- [Flutter App](https://codefloe.com/BuriedInCode/Bin-Lights_flutter)
 
 ## Format
 
