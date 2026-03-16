@@ -4,13 +4,20 @@ requires = ["hatchling"]
 
 [dependency-groups]
 dev = [
-  "pre-commit >= 4.5.0"
+  "mdformat >= 1.0.0",
+  "mdformat-gfm >= 1.0.0",
+  "mdformat-ruff >= 0.1.0",
+  "prek >= 0.3.0",
+  "ruff >= 0.15.0",
+  "toml-sort >= 0.24.0",
+  "ty >= 0.0.23"
 ]
 tests = [
   "pytest >= 9.0.0",
   "pytest-cov >= 7.0.0",
-  "tox >= 4.34.0",
-  "tox-uv >= 1.29.0"
+  "pytest-httpx >= 0.36.0",
+  "tox >= 4.49.0",
+  "tox-uv >= 1.33.0"
 ]
 
 [project]
@@ -23,7 +30,6 @@ classifiers = [
   "Intended Audience :: Developers",
   "Natural Language :: English",
   "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
   "Programming Language :: Python",
   "Topic :: Internet",
@@ -41,7 +47,7 @@ maintainers = [
 ]
 name = "Bin-Lights"
 readme = "README.md"
-requires-python = ">= 3.13"
+requires-python = ">= 3.14"
 
 [project.optional-dependencies]
 api-extract = [
@@ -50,7 +56,7 @@ api-extract = [
 image-extract = [
   "numpy >= 2.4.0",
   "opencv-python-headless >= 4.13.0.0",
-  "pymupdf >= 1.26.0",
+  "pymupdf >= 1.27.0",
   "pytesseract >= 0.3.13",
   "tessdata-eng >= 1.0.0"
 ]
@@ -94,6 +100,7 @@ ignore = [
   "FBT",
   "PLR0913",
   "T201",
+  "TCH",
   "TRY003"
 ]
 select = ["ALL"]
@@ -130,7 +137,7 @@ overrides."tool.tox.env_list".inline_arrays = false
 overrides."tool.tox.env_run_base.commands".inline_arrays = false
 
 [tool.tox]
-env_list = ["3.13", "3.14"]
+env_list = ["3.14"]
 min_version = "4.22"
 
 [tool.tox.env_run_base]
@@ -138,3 +145,7 @@ commands = [["pytest"]]
 dependency_groups = ["tests"]
 extras = ["api-extract", "image-extract"]
 passenv = []
+
+[tool.ty.src]
+exclude = ["**/tests/"]
+include = ["**/bin_lights"]

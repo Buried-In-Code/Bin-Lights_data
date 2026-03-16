@@ -41,11 +41,14 @@ def extract_calendars(
     pixmap = page.get_pixmap()
     png_bytes = pixmap.tobytes("png")
     img = cv2.imdecode(np.frombuffer(png_bytes, np.uint8), cv2.IMREAD_COLOR)
+    if img is None:
+        print("Failed to load image")
+        return []
 
     text_page = page.get_textpage_ocr(tessdata=tessdata.data_path())
     words = text_page.extractWORDS(delimiters="\n")
 
-    raw_blocks: list[dict[str, int]] = []
+    raw_blocks: list[dict[str, int | float]] = []
 
     for index in range(len(words) - 1):
         first_word = words[index][4]

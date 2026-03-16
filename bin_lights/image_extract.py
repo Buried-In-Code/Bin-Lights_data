@@ -37,6 +37,8 @@ def write_location_json_outputs(
 
         dated_colours: dict[date, Colour] = {}
         for cell in matching_cells:
+            if not cell.colour:
+                continue
             actual_date = cell.datestamp + timedelta(days=1) if cell.is_offset else cell.datestamp
             dated_colours[actual_date] = cell.colour
 
@@ -107,7 +109,7 @@ def extract_calendar_cells(
         resolve_weekly_colours(cells=extracted_cells, action_colours=actionable_colours)
 
         for cell in extracted_cells:
-            cell.colour = ctx.colour_fixes.get(cell.colour, cell.colour)
+            cell.colour = ctx.colour_fixes.get(cell.colour, cell.colour)  # ty: ignore[no-matching-overload]
 
         all_cells.update(extracted_cells)
 

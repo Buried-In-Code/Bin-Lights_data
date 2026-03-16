@@ -35,6 +35,9 @@ def extract_calendars(file: Path, rows: int, columns: int) -> list[Calendar]:
     pixmap = page.get_pixmap()
     png_bytes = pixmap.tobytes("png")
     img = cv2.imdecode(np.frombuffer(png_bytes, np.uint8), cv2.IMREAD_COLOR)
+    if img is None:
+        print("Failed to load image")
+        return []
 
     text_page = page.get_textpage_ocr(tessdata=tessdata.data_path())
 

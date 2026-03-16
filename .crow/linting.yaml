@@ -5,8 +5,9 @@ when:
     branch: main
 
 steps:
-  pre-commit:
+  prek:
     image: "cr.codefloe.com/ghcr.io/astral-sh/uv:python3.14-trixie"
+    depends_on: []
     commands:
-      - uv sync --locked --group dev
-      - uv run pre-commit run -a
+      - uv sync --locked --dev --all-extras
+      - uv run prek run -a

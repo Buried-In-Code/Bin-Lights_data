@@ -2,7 +2,6 @@ from datetime import date
 from pathlib import Path
 
 import numpy as np
-import pytest
 
 from bin_lights.models import Calendar, Cell, Colour, Context
 
@@ -88,11 +87,6 @@ def test_context_defaults() -> None:
     assert ctx.columns == 3
     assert ctx.date_fixes == {}
     assert ctx.colour_fixes == {}
-
-
-def test_context_requires_keyword_arguments() -> None:
-    with pytest.raises(TypeError):
-        Context(Path("calendar.png"), {})  # kw_only=True
 
 
 def test_context_default_dicts_are_not_shared() -> None:

@@ -6,6 +6,7 @@ __all__ = [
     "remove_colours",
 ]
 
+from collections.abc import Sequence
 from datetime import date, datetime
 from typing import Final
 
@@ -15,8 +16,8 @@ import numpy as np
 COLOUR_TOLERANCE: Final[int] = 10
 
 
-def find_largest_inner_contour(contours: list[np.ndarray], count: int = 1) -> list[np.ndarray]:
-    sorted_contours = sorted(contours, key=cv2.contourArea, reverse=True)
+def find_largest_inner_contour(contours: Sequence[np.ndarray], count: int = 1) -> list[np.ndarray]:
+    sorted_contours = sorted(contours, key=cv2.contourArea, reverse=True)  # ty: ignore[no-matching-overload]
     return sorted_contours[1 : 1 + count]
 
 
@@ -82,8 +83,8 @@ def adjust_mappings(
                     "y0": int(y0),
                     "x1": int(x1),
                     "y1": int(y1),
-                    "month": block["month"],
-                    "year": block["year"],
+                    "month": int(block["month"]),
+                    "year": int(block["year"]),
                 }
             )
 
