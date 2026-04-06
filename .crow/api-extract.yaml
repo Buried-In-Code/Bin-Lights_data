@@ -8,7 +8,7 @@ steps:
     image: "cr.codefloe.com/ghcr.io/astral-sh/uv:python3.14-trixie-slim"
     commands:
       - uv sync --locked --extra api-extract
-      - uv run bin-api-extract
+      - uv run api-extract
 
   push-changes:
     image: "docker.io/appleboy/drone-git-push:1.2"

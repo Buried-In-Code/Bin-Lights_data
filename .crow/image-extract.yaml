@@ -8,7 +8,7 @@ steps:
       - apt-get update
       - apt-get install -y tesseract-ocr
       - uv sync --locked --extra image-extract
-      - uv run bin-image-extract
+      - uv run image-extract
 
   push-changes:
     image: "docker.io/appleboy/drone-git-push:1.2"

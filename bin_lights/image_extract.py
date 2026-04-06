@@ -136,18 +136,21 @@ def main() -> None:
     extract_calendar_cells(
         contexts=[
             Context(
-                file=get_project_root() / "sources" / "South-Wairarapa_Jan-2025_Mar-2025.png",
+                file=get_project_root()
+                / "sources"
+                / "2025-26-SWDC-recycling-and-rubbish-collection-calendar.pdf",
                 colours={
-                    Colour.RED: (255, 0, 0),
-                    Colour.BLUE: (148, 220, 248),
-                    Colour.YELLOW: (255, 255, 0),
-                    Colour.BLACK: (0, 0, 0),
+                    Colour.RED: (239, 65, 35),
+                    Colour.BLUE: (169, 221, 228),
+                    Colour.YELLOW: (255, 223, 0),
+                    Colour.BLACK: (35, 31, 32),
                 },
-                rows=1,
                 colour_fixes={Colour.RED: Colour.YELLOW},
             ),
             Context(
-                file=get_project_root() / "sources" / "South-Wairarapa_Apr-2025_Mar-2026.pdf",
+                file=get_project_root()
+                / "sources"
+                / "2026-27-SWDC-recycling-and-rubbish-collection-calendar.pdf",
                 colours={
                     Colour.RED: (239, 65, 35),
                     Colour.BLUE: (169, 221, 228),
@@ -161,6 +164,7 @@ def main() -> None:
         offset_colours={Colour.YELLOW, Colour.BLACK},
         always_colour=Colour.RED,
     )
+    return
 
     extract_calendar_cells(
         contexts=[

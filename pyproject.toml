@@ -62,8 +62,8 @@ image-extract = [
 ]
 
 [project.scripts]
-bin-api-extract = "bin_lights.api_extract:main"
-bin-image-extract = "bin_lights.image_extract:main"
+api-extract = "bin_lights.api_extract:main"
+image-extract = "bin_lights.image_extract:main"
 
 [tool.coverage.report]
 show_missing = true
