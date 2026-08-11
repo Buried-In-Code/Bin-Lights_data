@@ -1,6 +1,8 @@
-__all__ = ["Colour"]
+__all__ = ["RGB", "Colour"]
 
 from enum import Enum, auto
+
+RGB = tuple[int, int, int]
 
 
 class Colour(Enum):

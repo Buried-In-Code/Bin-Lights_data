@@ -7,22 +7,21 @@ dev = [
   "mdformat >= 1.0.0",
   "mdformat-gfm >= 1.0.0",
   "mdformat-ruff >= 0.1.0",
-  "prek >= 0.3.0",
-  "ruff >= 0.15.0",
+  "prek >= 0.4.0",
+  "ruff >= 0.16.0",
   "toml-sort >= 0.24.0",
-  "ty >= 0.0.23"
+  "ty >= 0.0.70",
 ]
 tests = [
-  "pytest >= 9.0.0",
-  "pytest-cov >= 7.0.0",
-  "pytest-httpx >= 0.36.0",
-  "tox >= 4.49.0",
-  "tox-uv >= 1.33.0"
+  "pytest >= 9.1.0",
+  "pytest-cov >= 7.1.0",
+  "tox >= 4.59.0",
+  "tox-uv >= 1.36.0",
 ]
 
 [project]
 authors = [
-  {email = "BuriedInCode@tuta.io", name = "BuriedInCode"}
+  {email = "buriedincode@duckpond.nz", name = "BuriedInCode"},
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -33,37 +32,27 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
   "Programming Language :: Python",
   "Topic :: Internet",
-  "Typing :: Typed"
+  "Typing :: Typed",
 ]
 dependencies = [
-  "rich >= 14.3.0"
+  "numpy >= 2.5.0",
+  "pillow >= 12.3.0",
+  "pymupdf >= 1.28.0",
+  "tessdata-eng >= 1.0.0",
 ]
-description = "Json data of Bin rotations extracted from an Image/Pdf."
+description = "Json data of Bin rotations extracted from a Pdf."
 dynamic = ["version"]
 license = "MIT"
 license-files = ["LICENSE"]
 maintainers = [
-  {email = "BuriedInCode@tuta.io", name = "BuriedInCode"}
+  {email = "buriedincode@duckpond.nz", name = "BuriedInCode"},
 ]
 name = "Bin-Lights"
 readme = "README.md"
 requires-python = ">= 3.14"
 
-[project.optional-dependencies]
-api-extract = [
-  "httpx >= 0.28.0"
-]
-image-extract = [
-  "numpy >= 2.4.0",
-  "opencv-python-headless >= 4.13.0.0",
-  "pymupdf >= 1.27.0",
-  "pytesseract >= 0.3.13",
-  "tessdata-eng >= 1.0.0"
-]
-
 [project.scripts]
-api-extract = "bin_lights.api_extract:main"
-image-extract = "bin_lights.image_extract:main"
+bin-lights = "bin_lights.main:main"
 
 [tool.coverage.report]
 show_missing = true
@@ -95,13 +84,16 @@ skip-magic-trailing-comma = true
 [tool.ruff.lint]
 ignore = [
   "COM812",
+  "CPY001",
   "D",
-  "EM",
-  "FBT",
+  "EM101",
+  "EM102",
+  "FBT001",
+  "FBT002",
   "PLR0913",
-  "T201",
+  "PLR2004",
   "TCH",
-  "TRY003"
+  "TRY003",
 ]
 select = ["ALL"]
 
@@ -119,20 +111,16 @@ ignore-variadic-names = true
 combine-as-imports = true
 split-on-trailing-comma = false
 
-[tool.ruff.lint.pep8-naming]
-classmethod-decorators = ["classmethod"]
-
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = ["PLR2004", "S101"]
+"tests/*" = ["D", "PLR2004", "S101"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.ruff.lint.pyupgrade]
-keep-runtime-typing = true
-
 [tool.tomlsort]
 all = true
+ignore_case = true
+trailing_comma_inline_array = true
 overrides."tool.tox.env_list".inline_arrays = false
 overrides."tool.tox.env_run_base.commands".inline_arrays = false
 
@@ -143,7 +131,6 @@ min_version = "4.22"
 [tool.tox.env_run_base]
 commands = [["pytest"]]
 dependency_groups = ["tests"]
-extras = ["api-extract", "image-extract"]
 passenv = []
 
 [tool.ty.src]

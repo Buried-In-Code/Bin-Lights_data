@@ -1,19 +1,25 @@
-__all__ = ["Calendar", "Cell", "Context"]
+__all__ = ["Calendar", "Cell", "DetectionMode", "SourceConfig"]
 
 from dataclasses import dataclass, field
 from datetime import date
+from enum import Enum, auto
 from pathlib import Path
 
 import numpy as np
 
-from bin_lights.utils import Colour
+from bin_lights.colours import RGB, Colour
+
+
+class DetectionMode(Enum):
+    SINGLE = auto()
+    MULTI = auto()
 
 
 @dataclass(frozen=True)
 class Calendar:
     month: int
     year: int
-    calendar_image: np.ndarray
+    image: np.ndarray
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Calendar):
@@ -27,7 +33,7 @@ class Calendar:
 @dataclass
 class Cell:
     datestamp: date
-    colour: Colour | None
+    colours: frozenset[Colour] = frozenset()
     is_offset: bool = False
 
     def __eq__(self, other: object) -> bool:
@@ -40,10 +46,16 @@ class Cell:
 
 
 @dataclass(kw_only=True)
-class Context:
+class SourceConfig:
     file: Path
-    colours: dict[Colour, tuple[int, int, int]]
+    palette: dict[Colour, RGB]
+    mode: DetectionMode = DetectionMode.SINGLE
     rows: int = 4
     columns: int = 3
+    presence_threshold: float = 0.1
     date_fixes: dict[date, date] = field(default_factory=dict)
     colour_fixes: dict[Colour, Colour] = field(default_factory=dict)
+    offset_colours: set[Colour] = field(default_factory=set)
+    crop_colours: set[Colour] = field(default_factory=set)
+    coloured_weekdays: int = 7
+    wraps_month_overflow: bool = False

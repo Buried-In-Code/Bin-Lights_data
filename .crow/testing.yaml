@@ -1,3 +1,6 @@
+depends_on:
+  - linting
+
 when:
   - event: push
     branch: main
@@ -6,11 +9,11 @@ when:
 
 matrix:
   include:
-    - python: 3.14
+    - python: "3.14"
 
 steps:
   pytest:
-    image: "cr.codefloe.com/ghcr.io/astral-sh/uv:python${python}-trixie-slim"
+    image: "ghcr.io/astral-sh/uv:python${python}-trixie-slim"
     commands:
       - uv sync --locked --no-dev --all-extras --group tests
       - uv run --no-dev pytest
