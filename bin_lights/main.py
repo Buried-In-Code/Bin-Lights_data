@@ -51,7 +51,10 @@ def main() -> None:
     )
 
     extract_location_data(
-        configs=[wollondilly_shire_config("Wollondilly-Shire_Jul-2025_Jun-2026.pdf")],
+        configs=[
+            wollondilly_shire_config("Wollondilly-Shire_Jul-2025_Jun-2026.pdf"),
+            wollondilly_shire_config("Wollondilly-Shire_Jul-2026_Jun-2027.pdf"),
+        ],
         locations={"Razorback": "Friday"},
         output_dir=output_dir,
         always_colours={Colour.RED},
