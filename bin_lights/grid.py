@@ -113,7 +113,7 @@ def build_cells(
         else:
             row, col = divmod(position, 7)
             row -= leading_rows
-        if row < 0:
+        if row < 0 or col >= coloured_weekdays:
             cells.add(Cell(datestamp=date(year, month, day)))
             continue
 
