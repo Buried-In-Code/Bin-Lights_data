@@ -1,5 +1,5 @@
 __all__ = ["__version__", "get_project_root"]
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 from functools import cache
 from pathlib import Path

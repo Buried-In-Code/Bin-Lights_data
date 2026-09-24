@@ -6,8 +6,8 @@ A repo to parse and generate json files, to be used in Bin Lights implementation
 
 ## Implementations
 
-- [Pico Project](https://codefloe.com/BuriedInCode/Bin-Lights)
-- [Flutter App](https://codefloe.com/BuriedInCode/Bin-Lights_flutter)
+- [Micropython Project](https://codefloe.com/buriedincode/Bin-Lights)
+- [Mobile App](https://codefloe.com/buriedincode/Bin-Lights_mobile)
 
 ## Format
 
@@ -21,5 +21,4 @@ The output json are found in [output](./output) are in the following format:
 
 ## Socials
 
-[![Social - Fosstodon](https://img.shields.io/badge/%40BuriedInCode-teal?label=Fosstodon&logo=mastodon&style=for-the-badge)](https://fosstodon.org/@BuriedInCode)\
-[![Social - Matrix](https://img.shields.io/badge/%23The--Dev--Environment-teal?label=Matrix&logo=matrix&style=for-the-badge)](https://matrix.to/#/#The-Dev-Environment:matrix.org)
+[![Social - Matrix](https://img.shields.io/matrix/The-Dev-Environment:matrix.org?label=The-Dev-Environment&logo=matrix&style=for-the-badge)](https://matrix.to/#/#The-Dev-Environment:matrix.org)
