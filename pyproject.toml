@@ -8,15 +8,15 @@ dev = [
   "mdformat-gfm >= 1.0.0",
   "mdformat-ruff >= 0.1.0",
   "prek >= 0.5.0",
-  "ruff >= 0.16.0",
+  "ruff >= 0.17.0",
   "toml-sort >= 0.25.0",
-  "ty >= 0.0.80",
+  "ty >= 0.0.90",
 ]
 tests = [
   "pytest >= 9.1.0",
   "pytest-cov >= 7.1.0",
-  "tox >= 4.64.0",
-  "tox-uv >= 1.36.0",
+  "tox >= 4.67.0",
+  "tox-uv >= 1.37.0",
 ]
 
 [project]
@@ -36,8 +36,8 @@ classifiers = [
 ]
 dependencies = [
   "numpy >= 2.5.0",
-  "pillow >= 12.3.0",
-  "pymupdf >= 1.28.0",
+  "pillow >= 13.0.0",
+  "pymupdf >= 2.0.0",
   "tessdata-eng >= 1.0.0",
 ]
 description = "Json data of Bin rotations extracted from a Pdf."
