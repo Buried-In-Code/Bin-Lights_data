@@ -13,7 +13,7 @@ dev = [
   "ty >= 0.0.90",
 ]
 tests = [
-  "pytest >= 9.1.0",
+  "pytest >=9.2.0",
   "pytest-cov >= 7.1.0",
   "tox >= 4.67.0",
   "tox-uv >= 1.37.0",
