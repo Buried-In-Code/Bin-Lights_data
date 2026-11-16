@@ -35,7 +35,7 @@ classifiers = [
   "Typing :: Typed",
 ]
 dependencies = [
-  "numpy >= 2.5.0",
+  "numpy >=2.5.4",
   "pillow >= 13.0.0",
   "pymupdf >=2.1",
   "tessdata-eng >= 1.0.0",
