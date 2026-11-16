@@ -37,7 +37,7 @@ classifiers = [
 dependencies = [
   "numpy >= 2.5.0",
   "pillow >= 13.0.0",
-  "pymupdf >= 2.0.0",
+  "pymupdf >=2.1",
   "tessdata-eng >= 1.0.0",
 ]
 description = "Json data of Bin rotations extracted from a Pdf."
