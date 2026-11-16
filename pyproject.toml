@@ -49,7 +49,7 @@ maintainers = [
 ]
 name = "Bin-Lights"
 readme = "README.md"
-requires-python = ">= 3.14"
+requires-python = ">=3.14.10"
 
 [project.scripts]
 bin-lights = "bin_lights.main:main"
