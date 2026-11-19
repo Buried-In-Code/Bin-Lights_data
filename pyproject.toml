@@ -9,7 +9,7 @@ dev = [
   "mdformat-ruff >=0.1.3",
   "prek >=0.5.10",
   "ruff >=0.17.5",
-  "toml-sort >= 0.25.0",
+  "toml-sort >=0.26.0",
   "ty >=0.0.104",
 ]
 tests = [
